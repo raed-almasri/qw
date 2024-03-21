@@ -174,15 +174,37 @@ export default {
 					return image;
 				});
 
+				let multiLanguages = {
+					ar: {
+						projectName: JSON.parse(projectInfo.projectName)[`ar`],
+						description: JSON.parse(projectInfo.description)[`ar`],
+						city: JSON.parse(projectInfo.city)[`ar`],
+						area: JSON.parse(projectInfo.area)[`ar`],
+					},
+					en: {
+						projectName: JSON.parse(projectInfo.projectName)[`en`],
+						description: JSON.parse(projectInfo.description)[`en`],
+						city: JSON.parse(projectInfo.city)[`en`],
+						area: JSON.parse(projectInfo.area)[`en`],
+					},
+
+					tr: {
+						projectName: JSON.parse(projectInfo.projectName)[`tr`],
+						description: JSON.parse(projectInfo.description)[`tr`],
+						city: JSON.parse(projectInfo.city)[`tr`],
+						area: JSON.parse(projectInfo.area)[`tr`],
+					},
+				};
 				// ! Project Info
 				projectInfo = {
-					...projectInfo,
-					projectName: JSON.parse(projectInfo.projectName)[`${lang}`],
-					description: JSON.parse(projectInfo.description)[`${lang}`],
-					city: JSON.parse(projectInfo.city)[`${lang}`],
-					area: JSON.parse(projectInfo.area)[`${lang}`],
+					..._.omit(projectInfo, [
+						"projectName",
+						"description",
+						"city",
+						"area",
+					]),
+					multiLanguages,
 				};
-
 				return { ...projectInfo, features, images: allImages };
 			})
 		);
@@ -245,19 +267,38 @@ export default {
 		});
 
 		// ! Project Info
+		let multiLanguages = {
+			ar: {
+				projectName: JSON.parse(projectInfo.projectName)[`ar`],
+				description: JSON.parse(projectInfo.description)[`ar`],
+				city: JSON.parse(projectInfo.city)[`ar`],
+				area: JSON.parse(projectInfo.area)[`ar`],
+			},
+			en: {
+				projectName: JSON.parse(projectInfo.projectName)[`en`],
+				description: JSON.parse(projectInfo.description)[`en`],
+				city: JSON.parse(projectInfo.city)[`en`],
+				area: JSON.parse(projectInfo.area)[`en`],
+			},
+
+			tr: {
+				projectName: JSON.parse(projectInfo.projectName)[`tr`],
+				description: JSON.parse(projectInfo.description)[`tr`],
+				city: JSON.parse(projectInfo.city)[`tr`],
+				area: JSON.parse(projectInfo.area)[`tr`],
+			},
+		};
+		// ! Project Info
 		projectInfo = {
-			...projectInfo,
-			projectName: JSON.parse(projectInfo.projectName)[`${lang}`],
-			description: JSON.parse(projectInfo.description)[`${lang}`],
-			city: JSON.parse(projectInfo.city)[`${lang}`],
-			area: JSON.parse(projectInfo.area)[`${lang}`],
+			..._.omit(projectInfo, ["projectName", "description", "city", "area"]),
+			multiLanguages,
 		};
 
 		let response = {
 			success: true,
 			data: { ...projectInfo, features, images: allImages },
 		};
-		 	res.status(StatusCodes.OK).send(response);
+		res.status(StatusCodes.OK).send(response);
 	},
 
 	/*
@@ -396,5 +437,61 @@ export default {
 			},
 		};
 		res.status(StatusCodes.OK).send(response);
+	},
+
+	translate: async (req, res) => {
+		let response = {
+			success: true,
+			data: {
+				en: {
+					projectName: await translateTo(
+						req.body.projectName,
+						languages.Arabic,
+						languages.English
+					),
+
+					description: await translateTo(
+						req.body.description,
+						languages.Arabic,
+						languages.English
+					),
+					city: await translateTo(
+						req.body.city,
+						languages.Arabic,
+						languages.English
+					),
+					area: await translateTo(
+						req.body.area,
+						languages.Arabic,
+						languages.English
+					),
+				},
+				tr: {
+					projectName: await translateTo(
+						req.body.projectName,
+						languages.Arabic,
+						languages.Turkish
+					),
+
+					description: await translateTo(
+						req.body.description,
+						languages.Arabic,
+						languages.Turkish
+					),
+					city: await translateTo(
+						req.body.city,
+						languages.Arabic,
+						languages.Turkish
+					),
+					area: await translateTo(
+						req.body.area,
+						languages.Arabic,
+						languages.Turkish
+					),
+				},
+			},
+		};
+
+	return 	res.status(StatusCodes.OK).send(response);
 	},
 };

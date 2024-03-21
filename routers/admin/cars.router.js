@@ -47,3 +47,33 @@ router.delete(
 );
 
 export default router;
+
+
+ 
+
+// router.get('/', (req, res) => {
+//   // Your logic to get all cars
+// });
+
+// /**
+//  * @swagger
+//  * /cars/{id}:
+//  *   get:
+//  *     description: Returns a specific car by ID
+//  *     parameters:
+//  *       - in: path
+//  *         name: id
+//  *         required: true
+//  *         schema:
+//  *           type: integer
+//  *     responses:
+//  *       200:
+//  *         description: Success
+//  */
+// router.get('/:id', (req, res) => {
+//   // Your logic to get a specific car by ID
+// });
+
+// // Add routes for PUT, POST, DELETE etc.
+
+// module.exports = router;

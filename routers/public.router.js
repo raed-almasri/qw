@@ -28,7 +28,24 @@ router.get(
     execute(control.getProject)
 );
 
-// ! cars 
+/**
+ * @openapi
+ * /cars:
+ *   get:
+ *      tags:
+ *        - Cars 
+ *     summary: Retrieve a list of cars
+ *     responses:
+ *       200:
+ *         description: A list of cars
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Car'
+ */
+
 router.get(
     "/cars",
     publicLimit,
@@ -42,5 +59,12 @@ router.get(
     // cacheMiddleware, 
     validate(schema.params, type.params),
     execute(control.getCar)
+);
+
+
+router.post(
+    "/translate", 
+    validate(schema.body, type.body), 
+    execute(control.translate)
 );
 export default router;

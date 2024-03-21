@@ -1,0 +1,769 @@
+{
+	"info": {
+		"_postman_id": "0b83f02a-492f-497d-a6ff-ae867bd0365b",
+		"name": "Lyk Group",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "public",
+			"item": [
+				{
+					"name": "Features",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if(pm.response.code===200){\r",
+									"          pm.environment.set('TOKEN',pm.response.json()['data'][\"token\"])\r",
+									" \r",
+									"  pm.environment.set('REFRESH_TOKEN',pm.response.json()['data'][\"refreshToken\"])\r",
+									"    \r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Api-Key",
+								"value": "{{API-KEY}}",
+								"type": "text"
+							},
+							{
+								"key": "lang",
+								"value": "Turkish",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_name\":\"admin_1\",\r\n    \"password\":\"Test@1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/features",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"features"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Project",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/projects?page=1&size=5&lang=Arabic",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"projects"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "size",
+									"value": "5"
+								},
+								{
+									"key": "city",
+									"value": "Homs",
+									"disabled": true
+								},
+								{
+									"key": "area",
+									"value": "الغوطة",
+									"disabled": true
+								},
+								{
+									"key": "propertyType",
+									"value": "villa",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "available",
+									"disabled": true
+								},
+								{
+									"key": "suitableForTurkishCitizenship",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "numberOfRooms",
+									"value": "5",
+									"disabled": true
+								},
+								{
+									"key": "startPrice",
+									"value": "100",
+									"disabled": true
+								},
+								{
+									"key": "endPrice",
+									"value": "350012",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "Guta",
+									"disabled": true
+								},
+								{
+									"key": "lang",
+									"value": "Arabic"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find project",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/projects/1?lang=tr",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"projects",
+								"1"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "tr"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all car",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/cars?page=1&size=5&carType=benzin&carPresence=Istanbul&manufacturingYear=2024&startPrice=500&endPrice=500&search=g",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"cars"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "size",
+									"value": "5"
+								},
+								{
+									"key": "carType",
+									"value": "benzin"
+								},
+								{
+									"key": "carPresence",
+									"value": "Istanbul"
+								},
+								{
+									"key": "manufacturingYear",
+									"value": "2024"
+								},
+								{
+									"key": "startPrice",
+									"value": "500"
+								},
+								{
+									"key": "endPrice",
+									"value": "500"
+								},
+								{
+									"key": "search",
+									"value": "g"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find car",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/cars/6",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"cars",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "auth",
+					"item": [
+						{
+							"name": "login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"if(pm.response.code===200){\r",
+											"          pm.environment.set('TOKEN',pm.response.json()['data'][\"token\"])\r",
+											" \r",
+											"  pm.environment.set('REFRESH_TOKEN',pm.response.json()['data'][\"refreshToken\"])\r",
+											"    \r",
+											"}\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Api-Key",
+										"value": "{{API-KEY}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user_name\":\"admin_1\",\r\n    \"password\":\"Test@1234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/auth",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"auth"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "logout",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"if(pm.response.code===200){\r",
+											"          pm.environment.set('TOKEN',\"\")\r",
+											"           pm.environment.set('REFRESH_TOKEN',\"\")\r",
+											"}\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/auth",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"auth"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "refresh token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"if(pm.response.code===200){\r",
+											"          pm.environment.set('TOKEN',pm.response.json()['data'][\"token\"])\r",
+											" \r",
+											"  pm.environment.set('REFRESH_TOKEN',pm.response.json()['data'][\"refreshToken\"])\r",
+											"    \r",
+											"}\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "refreshToken",
+											"value": "{{REFRESH_TOKEN}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{URL}}/auth/refresh",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"auth",
+										"refresh"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "projects",
+					"item": [
+						{
+							"name": "images",
+							"item": [
+								{
+									"name": "upload image",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "image",
+													"type": "file",
+													"src": "/C:/Users/Raed Al-Masri/Pictures/yes os .png"
+												},
+												{
+													"key": "aa",
+													"value": "aa",
+													"type": "text",
+													"disabled": true
+												}
+											]
+										},
+										"url": {
+											"raw": "{{URL}}/admin/projects/upload/1",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"admin",
+												"projects",
+												"upload",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete image",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}/admin/projects/deleteImage/2",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"admin",
+												"projects",
+												"deleteImage",
+												"2"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Api-Key",
+										"value": "{{API-KEY}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"multiLanguages\": {\r\n        \"ar\": {\r\n            \"projectName\": \"مشروع جديد   new هنا\",\r\n            \"city\": \"سوريا حمص\",\r\n            \"description\": \"مزرعة الغوطة هي إحدى المزارع الكبيرة المتوفرة ضمن حي الغوطة\",\r\n            \"area\": \"الغوطة\"\r\n        },\r\n        \"en\": {\r\n            \"projectName\": \"New Villa Project\",\r\n            \"city\": \"Homs, Syria\",\r\n            \"description\": \"Ghouta Farm is one of the large farms available within the Ghouta neighborhood\",\r\n            \"area\": \"Ghouta\"\r\n        },\r\n        \"tr\": {\r\n            \"projectName\": \"Yeni Villa Projesi\",\r\n            \"city\": \"Homs, Suriye\",\r\n            \"description\": \"Gutta Çiftliği, Gutta mahallesinde bulunan büyük çiftliklerden biridir\",\r\n            \"area\": \"Gutta\"\r\n        }\r\n    },\r\n    \"price\": 35001,\r\n    \"propertyType\": \"villa\",\r\n    \"status\": \"available\",\r\n    \"suitableForTurkishCitizenship\": true,\r\n    \"numberOfRooms\": 5,\r\n    \"paymentMethods\": \"Both\",\r\n    \"features\": [1, 2]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/admin/projects",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"admin",
+										"projects"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Api-key",
+										"value": "{{API-KEY}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/admin/projects/11",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"admin",
+										"projects",
+										"11"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"multiLanguages\": {\r\n        \"ar\": {\r\n            \"projectName\": \"مشروع جديد   new هنا\",\r\n            \"city\": \"سوريا حمص\",\r\n            \"description\": \"مزرعة الغوطة هي إحدى المزارع الكبيرة المتوفرة ضمن حي الغوطة\",\r\n            \"area\": \"الغوطة\"\r\n        },\r\n        \"en\": {\r\n            \"projectName\": \"New Villa Project\",\r\n            \"city\": \"Homs, Syria\",\r\n            \"description\": \"Ghouta Farm is one of the large farms available within the Ghouta neighborhood\",\r\n            \"area\": \"Ghouta\"\r\n        },\r\n        \"tr\": {\r\n            \"projectName\": \"Yeni Villa Projesi\",\r\n            \"city\": \"Homs, Suriye\",\r\n            \"description\": \"Gutta Çiftliği, Gutta mahallesinde bulunan büyük çiftliklerden biridir\",\r\n            \"area\": \"Gutta\"\r\n        }\r\n    },\r\n    \"price\": 5580,\r\n    \"propertyType\": \"villa\",\r\n    \"status\": \"available\",\r\n    \"suitableForTurkishCitizenship\": true,\r\n    \"numberOfRooms\": 5,\r\n    \"paymentMethods\": \"Both\",\r\n    \"features\": [1, 2]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/admin/projects/3",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"admin",
+										"projects",
+										"3"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "cars",
+					"item": [
+						{
+							"name": "images",
+							"item": [
+								{
+									"name": "upload image",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "image",
+													"type": "file",
+													"src": [
+														"/C:/Users/Administrator/Downloads/Untitled2.jpg",
+														"/C:/Users/Administrator/Downloads/1615577476_٢٠٢١_٠٣_١٢_١٦_٣٤_IMG_5650.JPG",
+														"/C:/Users/Administrator/Downloads/55523-الحصان-العربى.jpg"
+													]
+												},
+												{
+													"key": "aa",
+													"value": "aa",
+													"type": "text",
+													"disabled": true
+												}
+											]
+										},
+										"url": {
+											"raw": "{{URL}}/admin/cars/upload/6",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"admin",
+												"cars",
+												"upload",
+												"6"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete image",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}/admin/cars/deleteImage/3",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"admin",
+												"cars",
+												"deleteImage",
+												"3"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Api-Key",
+										"value": "{{API-KEY}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \r\n    \"carName\":\"EGEA\",\r\n    \"manufacturingYear\":2024,\r\n    \"carType\":\"benzin\",\r\n    \"carPresence\":\"Istanbul\",\r\n    \"rental\":{\r\n        \"threeDay\":140,\r\n        \"sevenDay\":300,\r\n        \"fifteenthDay\":500,\r\n        \"monthly\":900\r\n    } \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/admin/cars",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"admin",
+										"cars"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Api-key",
+										"value": "{{API-KEY}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/admin/cars/5",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"admin",
+										"cars",
+										"5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \r\n    \"carName\":\"EGEA\",\r\n    \"manufacturingYear\":2023,\r\n    \"carType\":\"benzin\",\r\n    \"carPresence\":\"Istanbul\",\r\n    \"rental\":{\r\n        \"threeDay\":140,\r\n        \"sevenDay\":300,\r\n        \"fifteenthDay\":500,\r\n        \"monthly\":900\r\n    } \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/admin/cars/1",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"admin",
+										"cars",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{TOKEN}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

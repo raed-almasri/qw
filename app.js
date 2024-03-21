@@ -16,10 +16,18 @@ import compression from "compression";
 import helmet from "./config/helmet.js";
 import sessionConfig from "./config/sessionConfig.js";
 // import csurfProtection from "./config/csurf.js";
-import multer from "multer";
+ 
+// **************** 
+ 
+import swaggerUi from 'swagger-ui-express'
+import swaggerSpec from './config/swaggerConfig.js'
 
 import router from "./routers/router.js";
 const app = express();
+// Swagger API documentation
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+ 
+
 app.use(limit);
 dotenv.config({ path: `.env` });
 app.use(cookieParser());
@@ -48,3 +56,10 @@ app.use(router);
 
 app.use(errorHandler);
 export default app;
+
+ 
+
+
+
+
+

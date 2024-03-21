@@ -1,8 +1,11 @@
 import app from "./app.js";
+import swaggerDocs from "./config/swaggerConfig.js";
 import { sequelize } from "./utils/connect.js";
 
 app.listen(process.env.PORT, async () => {
-    // await createRelations();
+     //await createRelations();
+     
+  swaggerDocs(app, process.env.PORT);
     console.log(
         `Listening at http://${process.env.DOMAIN}:${process.env.PORT} ✅`
     );

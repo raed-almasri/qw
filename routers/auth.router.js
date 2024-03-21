@@ -27,3 +27,6 @@ router.put("/refresh", execute(control.refreshToken));
  */
 router.get("/", auth, execute(control.logout));
 export default router;
+
+
+
